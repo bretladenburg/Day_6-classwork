@@ -1,28 +1,35 @@
 var operationHours = ['6am' , '7am' , '8am' , '9am' , '10am' , '11am' , '12pm' , '1pm' , '2pm' , '3pm' , '4pm' , '5pm' , '6pm' , '7pm' , '8pm'];
 
+var body = document.getElementsByTagName('body')[0];
+
 var firstAndPike = {
+  name: 'First and Pike',
   maxCust: 65,
   minCust: 23,
   aveCookie: 6.3,
   salesArr: [],
-  total:
-  randomCust : function() {
-    console.log(Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust)));
-    return Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust));
+  randomCust: function() {
+    console.log(Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
   },
   averageCookiesPerHour: function() {
     return this.aveCookie * this.randomCust();
   },
   salesPerHour: function() {
+    var total = 0;
     for (var i = 0; i < operationHours.length; i++) {
       this.salesArr.push(this.averageCookiesPerHour().toFixed(0));
+      total += this.averageCookiesPerHour();
     }
+    this.salesArr.push(this.total);
   },
 
   renderHtml: function() {
     this.salesPerHour();
-    var body = document.getElementsByTagName('body')[0];
     var ul = document.createElement('ul');
+    var h2 = document.createElement('h2');
+    h2.innerText = this.name;
+    body.appendChild(h2);
     for (var i = 0; i < operationHours.length; i++) {
       var li = document.createElement('li');
       li.innerText = operationHours[i] + ': ' + this.salesArr[i] + ' cookies';
@@ -31,7 +38,7 @@ var firstAndPike = {
     body.appendChild(ul);
   }
   var li = document.createdElement('li');
-  li.innerText = 'Total' + ': ' + firstAndPike.total;
+  li.innerText = 'Total' + ': ' + salesPerHour.total;
 
 };
 
@@ -43,9 +50,9 @@ var seatacAirport = {
   aveCookie: 6.3,
   salesArr: [],
   total:
-  randomCust : function() {
-    console.log(Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust)));
-    return Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust));
+  randomCust: function() {
+    console.log(Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
   },
   averageCookiesPerHour: function() {
     return this.aveCookie * this.randomCust();
@@ -68,7 +75,7 @@ var seatacAirport = {
     body.appendChild(ul);
   }
   var li = document.createdElement('li');
-  li.innerText = 'Total' + ': ' + firstAndPike.total;
+  li.innerText = 'Total' + ': ' + seatacAirport.total;
 
 };
 
@@ -82,9 +89,9 @@ var seattleCenter = {
   aveCookie: 6.3,
   salesArr: [],
   total:
-  randomCust : function() {
-    console.log(Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust)));
-    return Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust));
+  randomCust: function() {
+    console.log(Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
   },
   averageCookiesPerHour: function() {
     return this.aveCookie * this.randomCust();
@@ -107,7 +114,7 @@ var seattleCenter = {
     body.appendChild(ul);
   }
   var li = document.createdElement('li');
-  li.innerText = 'Total' + ': ' + firstAndPike.total;
+  li.innerText = 'Total' + ': ' + seattleCenter.total;
 
 };
 
@@ -120,9 +127,9 @@ var capitalHill = {
   aveCookie: 6.3,
   salesArr: [],
   total:
-  randomCust : function() {
-    console.log(Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust)));
-    return Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust));
+  randomCust: function() {
+    console.log(Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
   },
   averageCookiesPerHour: function() {
     return this.aveCookie * this.randomCust();
@@ -145,7 +152,7 @@ var capitalHill = {
     body.appendChild(ul);
   }
   var li = document.createdElement('li');
-  li.innerText = 'Total' + ': ' + firstAndPike.total;
+  li.innerText = 'Total' + ': ' + capitalHill.total;
 
 };
 
@@ -158,9 +165,9 @@ var alki = {
   aveCookie: 6.3,
   salesArr: [],
   total:
-  randomCust : function() {
-    console.log(Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust)));
-    return Math.floor(Math.random() * ((this.maxCust - this.minCust) + this.minCust));
+  randomCust: function() {
+    console.log(Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
+    return Math.floor(Math.random() * (this.maxCust - this.minCust + 1) + this.minCust);
   },
   averageCookiesPerHour: function() {
     return this.aveCookie * this.randomCust();
@@ -183,7 +190,7 @@ var alki = {
     body.appendChild(ul);
   }
   var li = document.createdElement('li');
-  li.innerText = 'Total' + ': ' + firstAndPike.total;
+  li.innerText = 'Total' + ': ' + alki.total;
 
 };
 
