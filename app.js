@@ -1,15 +1,21 @@
 var operationHours = ['6am' , '7am' , '8am' , '9am' , '10am' , '11am' , '12pm' , '1pm' , '2pm' , '3pm' , '4pm' , '5pm' , '6pm' , '7pm' , '8pm'];
 
 var body = document.getElementsByTagName('body')[0];
-console.log('this is the body,' , body);
 
-var storeArr = [];
+var storesArr = [];
 
-function cookieStand(name, maxCust, minCust, aveCookie){
+var firstAndPike = new CookieStand('First and Pike', 65, 23, 6.3);
+var seatacAirport = new CookieStand('SeaTac Airport', 24, 3, 1.2);
+var seattleCenter = new CookieStand('Seattle Center', 38, 11, 3.7);
+var capitalHill = new CookieStand('Captial Hill', 38, 20, 2.3);
+var alki = new CookieStand('Alki', 16, 2, 4.6);
+
+function CookieStand(name, maxCust, minCust, aveCookie){
   this.location = name;
   this.maxCust = maxCust;
   this.minCust = minCust;
   this.aveCookie = aveCookie;
+  this.total = 0;
   this.salesArr = [];
 
   this.randomCust = function() {
@@ -22,10 +28,9 @@ function cookieStand(name, maxCust, minCust, aveCookie){
   };
 
   this.salesPerHour = function() {
-    var total = 0;
     for (var i = 0; i < operationHours.length; i++) {
-      this.salesArr.push(Math.floor(this.averageCookiesPerHour()));
-      total += this.salesArr[i]++;
+      var cookiesPerHour = this.salesArr.push(Math.floor(this.averageCookiesPerHour()));
+      this.total += cookiesPerHour;
     }
   };
 
@@ -37,7 +42,7 @@ function cookieStand(name, maxCust, minCust, aveCookie){
     table.appendChild(tbody);
     var tableRow = document.createElement('tr');
     tbody.appendChild(tableRow);
-    var tData = document.createElement('td');
+    var tData = document.createElement('th');
     tableRow.appendChild(tData);
     tData.innerText = this.location;
     for (var i = 0; i < operationHours.length; i++) {
@@ -46,7 +51,8 @@ function cookieStand(name, maxCust, minCust, aveCookie){
       newTdata.innerText = this.salesArr[i];
     }
   };
-};
+  storesArr.push(this);
+}
 renderStoreTable = function() {
   var table = document.createElement('table');
   body.appendChild(table);
@@ -65,19 +71,12 @@ renderStoreTable = function() {
 
 renderStoreTable();
 
-var firstAndPike = new cookieStand('First and Pike', 65, 23, 6.3);
-storeArr.push(firstAndPike);
-var seatacAirport = new cookieStand('SeaTac Airport', 24, 3, 1.2);
-storeArr.push(seatacAirport);
-var seattleCenter = new cookieStand('Seattle Center', 38, 11, 3.7);
-storeArr.push(seattleCenter);
-var capitalHill = new cookieStand('Captial Hill', 38, 20, 2.3);
-storeArr.push(capitalHill);
-var alki = new cookieStand('Alki', 16, 2, 4.6);
-storeArr.push(alki);
+for (var i = 0; i < storesArr.length; i++) {
+  storesArr[i].renderData();
+}
 
-firstAndPike.renderData();
-seatacAirport.renderData();
-seattleCenter.renderData();
-capitalHill.renderData();
-alki.renderData();
+// firstAndPike.renderData();
+// seatacAirport.renderData();
+// seattleCenter.renderData();
+// capitalHill.renderData();
+// alki.renderData();
