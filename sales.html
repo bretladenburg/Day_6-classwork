@@ -5,6 +5,21 @@
     <title>Salmon Cookies</title>
   </head>
   <body>
+    <div id ='table'></div>
+    <form action="sales.html" method ="get" id="the-form">
+      <fieldset>
+        <legend>Create Your Own Store</legend>
+        <label>Store Location<br />
+        <input type="text" name="Store Location" required/></label><br />
+        <label>Maximum Customers<br />
+        <input type="number" name="Maximum Customers" required/></lable><br />
+        <label>Minimum Customers<br />
+        <input type="number" name="Minimum Customers" min = "0" required/></lable><br />
+        <label>Average Cookies Sold Per Hour<br />
+        <input type="number" name="Average Cookies Sold Per Hour" step = ".01"  required/></label><br />
+        <input type ="submit" value="Enter Store Here"/></li>
+      </fieldset>
+    </form>
     <script src = "app.js"></script>
   </body>
 </html>
