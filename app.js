@@ -37,11 +37,11 @@ function CookieStand(name, maxCust, minCust, aveCookie){
     this.salesPerHour();
     var table = document.getElementsByTagName('table')[0];
     body.appendChild(table);
-    var tbody = document.createElement('tbody');
+    var tbody = document.getElementById('tbody');
     table.appendChild(tbody);
     var tableRow = document.createElement('tr');
     tbody.appendChild(tableRow);
-    var tData = document.createElement('th');
+    var tData = document.createElement('td');
     tableRow.appendChild(tData);
     tData.innerText = this.name;
     for (var i = 0; i < operationHours.length; i++) {
@@ -50,6 +50,7 @@ function CookieStand(name, maxCust, minCust, aveCookie){
       newTdata.innerText = this.salesArr[i];
     }
   };
+
   storesArr.push(this);
 }
 renderStoreTable = function() {
@@ -57,6 +58,9 @@ renderStoreTable = function() {
   body.appendChild(table);
   var tableHead = document.createElement('thead');
   table.appendChild(tableHead);
+  var tbody = document.createElement('tbody');
+  table.appendChild(tbody);
+  tbody.id = 'tbody';
   var tableRow = document.createElement('tr');
   tableHead.append(tableRow);
   var tableH = document.createElement('th');
@@ -70,20 +74,34 @@ renderStoreTable = function() {
 
 renderStoreTable();
 
+function tableTotals() {
+  var newTR = document.createElement('tr');
+  var tbody = document.getElementById('tbody');
+  tbody.appendChild(newTR);
+  var newTD = document.createElement('td');
+  newTR.appendChild(newTD);
+  newTD.innerText = 'Totals';
+  for (var i = 0; i < operationHours.length; i++) {
+    var total = 0;
+    for (var j = 0; j < storesArr.length; j++) {
+      total += storesArr[j].salesArr[i];
+    }
+    var totalData = document.createElement('td');
+    newTR.appendChild(totalData);
+    totalData.innerText = total;
+  }
+}
+
 for (var i = 0; i < storesArr.length; i++) {
   storesArr[i].renderData();
 }
 
+tableTotals();
+
 var form = document.getElementById('the-form');
 function userInput(event) {
   event.preventDefault();
-  var newStoreForm = event.target;
-  var storeName = newStoreForm.elements['Store Location'];
-  var maximumCustomers = newStoreForm.elements['Maximum Customers'];
-  var minimumCustomers = newStoreForm.elements['Minimum Customers'];
-  var averageCookies = newStoreForm.elements['Average Cookies Sold Per Hour'];
-  var newCookieStand = new CookieStand(storeName.value, Math.floor(maximumCustomers.value), Math.floor(minimumCustomers.value), averageCookies.value);
-
+  var tbody = document.getElementById('tbody');
   if (maximumCustomers === NaN || minimumCustomers === NaN || averageCookies === NaN) {
     alert('please input a number');
   } else if (maximumCustomers < minimumCustomers) {
@@ -96,8 +114,9 @@ function userInput(event) {
     var minimumCustomers = newStoreForm.elements['Minimum Customers'];
     var averageCookies = newStoreForm.elements['Average Cookies Sold Per Hour'];
     var newCookieStand = new CookieStand(storeName.value, Math.floor(maximumCustomers.value), Math.floor(minimumCustomers.value), averageCookies.value);
+    tbody.removeChild(tbody.lastChild);
     newCookieStand.renderData();
-
+    tableTotals();
     form.reset();
   };
 
