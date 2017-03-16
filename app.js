@@ -78,11 +78,11 @@ var form = document.getElementById('the-form');
 function userInput(event) {
   event.preventDefault();
   var newStoreForm = event.target;
-  var storeLocation = newStoreForm.elements['Store Location'].value;
-  var maximumCustomers = newStoreForm.elements['Maximum Customers'].value;
-  var minimumCustomers = newStoreForm.elements['Minimum Customers'].value;
-  var averageCookies = newStoreForm.elements['Average Cookies Sold Per Hour'].value;
-  var newCookieStand = new CookieStand(storeLocation, maximumCustomers, minimumCustomers, averageCookies);
+  var storeName = newStoreForm.elements['Store Location'];
+  var maximumCustomers = newStoreForm.elements['Maximum Customers'];
+  var minimumCustomers = newStoreForm.elements['Minimum Customers'];
+  var averageCookies = newStoreForm.elements['Average Cookies Sold Per Hour'];
+  var newCookieStand = new CookieStand(storeName.value, Math.floor(maximumCustomers.value), Math.floor(minimumCustomers.value), averageCookies.value);
 
   if (maximumCustomers === NaN || minimumCustomers === NaN || averageCookies === NaN) {
     alert('please input a number');
@@ -91,14 +91,16 @@ function userInput(event) {
   } else {
     event.preventDefault();
     var newStoreForm = event.target;
-    var storeLocation = newStoreForm.elements['Store Location'].value;
-    var maximumCustomers = newStoreForm.elements['Maximum Customers'].value;
-    var minimumCustomers = newStoreForm.elements['Minimum Customers'].value;
-    var averageCookies = newStoreForm.elements['Average Cookies Sold Per Hour'].value;
-    var newCookieStand = new CookieStand(storeLocation, maximumCustomers, minimumCustomers, averageCookies);
+    var storeName = newStoreForm.elements['Store Location'];
+    var maximumCustomers = newStoreForm.elements['Maximum Customers'];
+    var minimumCustomers = newStoreForm.elements['Minimum Customers'];
+    var averageCookies = newStoreForm.elements['Average Cookies Sold Per Hour'];
+    var newCookieStand = new CookieStand(storeName.value, Math.floor(maximumCustomers.value), Math.floor(minimumCustomers.value), averageCookies.value);
+    newCookieStand.renderData();
+
+    form.reset();
   };
 
-  newCookieStand.renderData();
 };
 
 form.addEventListener('submit', userInput);
